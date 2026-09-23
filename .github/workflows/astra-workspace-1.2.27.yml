@@ -1,0 +1,31 @@
+name: Build Astra Workspace UI 1.2.27
+
+on:
+  push:
+    branches:
+      - build/astra-workspace-ui-1.2.27
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Build
+        run: bun run --cwd packages/astra-workspace build
+      - name: Verify
+        run: |
+          test -f packages/astra-workspace/dist/index.html
+          find packages/astra-workspace/dist -maxdepth 2 -type f -print
+      - name: Upload bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: workspace-ui-1.2.27
+          path: packages/astra-workspace/dist
+          if-no-files-found: error
