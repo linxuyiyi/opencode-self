@@ -1,0 +1,20 @@
+{
+  "name": "@astra/workspace-ui-1.2.27",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "OPENCODE_CHANNEL=prod vite build"
+  },
+  "dependencies": {
+    "@opencode-ai/app": "workspace:*",
+    "@opencode-ai/util": "workspace:*",
+    "@solidjs/router": "catalog:",
+    "solid-js": "catalog:"
+  },
+  "devDependencies": {
+    "vite": "catalog:",
+    "vite-plugin-solid": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "typescript": "catalog:"
+  }
+}
